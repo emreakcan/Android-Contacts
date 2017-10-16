@@ -11,6 +11,6 @@ import retrofit2.http.GET;
 public interface Connect {
 
     @GET("/users")
-    Call<List<User>> getSoru();
+    Call<List<User>> getUsers();
 
 }

@@ -12,10 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.itsmee.R;
-import com.itsmee.bean.User;
 import com.itsmee.contact.Contact;
 import com.itsmee.contact.ContactFetcher;
 import com.itsmee.contact.adapters.ContactsAdapter;
@@ -29,6 +29,8 @@ public class PhoneContact extends Fragment {
     ListView lvContacts;
     final int myPermissionInt = 0;
     private EditText search;
+    private RelativeLayout layout;
+
 
     public static PhoneContact newInstance() {
         PhoneContact fragment = new PhoneContact();
@@ -40,9 +42,15 @@ public class PhoneContact extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_phone_contact, container, false);
 
-        search = (EditText)view.findViewById(R.id.searchp);
+        search = (EditText) view.findViewById(R.id.searchp);
 
         lvContacts = (ListView) view.findViewById(R.id.lvContacts);
+
+        layout = (RelativeLayout)view.findViewById(R.id.layoutp);
+
+        layout.setDescendantFocusability(ViewGroup.FOCUS_BEFORE_DESCENDANTS);
+        layout.setFocusableInTouchMode(true);
+
 
         if (ContextCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.READ_CONTACTS)
@@ -80,12 +88,6 @@ public class PhoneContact extends Fragment {
         return view;
 
 
-    }
-
-
-    private void toaster(String s) {
-        Toast.makeText(getActivity(), s,
-                Toast.LENGTH_LONG).show();
     }
 
     @Override

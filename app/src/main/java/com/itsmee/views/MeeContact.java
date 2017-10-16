@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.itsmee.R;
@@ -35,7 +36,7 @@ public class MeeContact extends Fragment {
     private List<User> itemList = new ArrayList<>();
     private ListView listview;
     private EditText search;
-
+    private RelativeLayout layout;
     public static PhoneContact newInstance() {
         PhoneContact fragment = new PhoneContact();
         return fragment;
@@ -49,6 +50,11 @@ public class MeeContact extends Fragment {
         listview = (ListView) view.findViewById(R.id.meeContacts);
 
         search = (EditText) view.findViewById(R.id.searchp);
+
+        layout = (RelativeLayout)view.findViewById(R.id.layout);
+
+        layout.setDescendantFocusability(ViewGroup.FOCUS_BEFORE_DESCENDANTS);
+        layout.setFocusableInTouchMode(true);
 
         getData();
 
@@ -86,7 +92,7 @@ public class MeeContact extends Fragment {
                 .build();
 
         Connect connect = retrofit.create(Connect.class);
-        Call<List<User>> call = connect.getSoru();
+        Call<List<User>> call = connect.getUsers();
 
         itemList.clear();
 

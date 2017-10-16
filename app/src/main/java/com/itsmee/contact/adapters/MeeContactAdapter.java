@@ -31,8 +31,8 @@ public class MeeContactAdapter extends SearchAdapter<User> {
         }
     }
 
-    public MeeContactAdapter(List<User> movies, Context context) {
-        super(movies, context);
+    public MeeContactAdapter(List<User> contacts, Context context) {
+        super(contacts, context);
     }
 
     @Override
